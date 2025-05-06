@@ -1,0 +1,33 @@
+/* Card hover effect */
+.quiz-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .quiz-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Zoom effect on image hover */
+  .quiz-image-wrapper {
+    overflow: hidden;
+  }
+  .quiz-image {
+    transition: transform 0.4s ease;
+  }
+  .quiz-card:hover .quiz-image {
+    transform: scale(1.05);
+  }
+  
+  /* Button hover effect */
+  .view-quiz-btn {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  .view-quiz-btn:hover {
+    background-color: #004b9a; /* slightly darker blue */
+    transform: scale(1.03);
+  }
+  
+  /* Optional: card-body light background is already added */
+  .card-body.bg-light {
+    background-color: #f8f9fa !important;
+  }  
