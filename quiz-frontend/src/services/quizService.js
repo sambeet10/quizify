@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const API = import.meta.env.VITE_BACKEND_URL + '/api';
 
-// Fetch all quizzes
 export const getAllQuizzes = async () => {
   try {
     const response = await axios.get(`${API}/quiz`);
@@ -13,7 +12,6 @@ export const getAllQuizzes = async () => {
   }
 };
 
-// Fetch quizzes created by the logged-in user
 export const getQuizzesByUser = async (token) => {
   try {
     const response = await axios.get(`${API}/quiz/my-quizzes`, {
@@ -42,9 +40,9 @@ export const getQuizById = async (id, token) => {
   }
 };
 
-export const deleteQuizById = async (quizId, token) => {  // Changed parameter name to quizId
+export const deleteQuizById = async (quizId, token) => {  
   try {
-    const response = await axios.delete(`${API}/quiz/delete/${quizId}`, {  // Changed to quizId
+    const response = await axios.delete(`${API}/quiz/delete/${quizId}`, {  
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -56,9 +54,9 @@ export const deleteQuizById = async (quizId, token) => {  // Changed parameter n
   }
 };
 
-export const updateQuizById = async (quizId, updatedData, token) => {  // Changed parameter name to quizId
+export const updateQuizById = async (quizId, updatedData, token) => {  
   try {
-    const response = await axios.put(`${API}/quiz/edit/${quizId}`, updatedData, {  // Changed to quizId
+    const response = await axios.put(`${API}/quiz/edit/${quizId}`, updatedData, { 
       headers: {
         Authorization: `Bearer ${token}`,
       },

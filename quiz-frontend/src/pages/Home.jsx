@@ -14,7 +14,7 @@ const Home = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 1000); // change slide every 1 second
+    }, 1000); 
 
     return () => clearInterval(interval);
   }, []);
@@ -28,15 +28,15 @@ const Home = () => {
       />
       <div
         className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center"
-        style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }} // slightly more transparent
+        style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
       >
         <h1
           style={{
             fontSize: '8rem',
             fontWeight: 'bold',
-            color: '#000', // black text color
+            color: '#000', 
             fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-            textShadow: '2px 2px 6px rgba(255, 255, 255, 0.8)' // whitish shadow
+            textShadow: '2px 2px 6px rgba(255, 255, 255, 0.8)' 
           }}
         >
           Quizify
