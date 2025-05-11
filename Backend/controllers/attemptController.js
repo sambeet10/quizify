@@ -16,8 +16,8 @@ const attemptQuiz = async (req, res) => {
     const answerDetails = [];
 
     quiz.questions.forEach((question) => {
-      const userAnswer = selectedAnswers.find((ans) =>
-        ans.questionId == question._id.toString()
+      const userAnswer = selectedAnswers.find(
+        (ans) => ans.questionId == question._id.toString()
       );
 
       if (userAnswer) {
@@ -26,7 +26,9 @@ const attemptQuiz = async (req, res) => {
 
         answerDetails.push({
           questionId: question._id,
+          question: question.question, // ✅ include question text
           selectedOption: userAnswer.selectedOption,
+          correctAnswer: question.correctAnswer, // ✅ include correct answer
           isCorrect,
         });
       }
@@ -49,6 +51,7 @@ const attemptQuiz = async (req, res) => {
       total: quiz.questions.length,
       correctAnswers: correctCount,
       attemptId: attempt._id,
+      answerDetails, // ✅ send full info back to frontend
     });
   } catch (error) {
     console.error('Error in quiz attempt:', error);

@@ -14,7 +14,7 @@ const QuizCard = ({ quiz }) => {
           style={{ height: '200px', objectFit: 'cover' }}
         />
       </div>
-      <div className="card-body d-flex flex-column" style={{ backgroundColor: '#b5f7ed' }}>        
+      <div className="card-body d-flex flex-column" style={{ background: 'linear-gradient(to right, #ffeff7, #ffcce6)' }}>        
         <h5 className="card-title">{quiz.title}</h5>
         <p className="card-text text-muted mb-1">{quiz.category}</p>
         <p className="card-text" style={{ flexGrow: 1 }}>

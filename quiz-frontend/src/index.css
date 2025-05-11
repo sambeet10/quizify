@@ -31,3 +31,25 @@
   .card-body.bg-light {
     background-color: #f8f9fa !important;
   }  
+
+  /* index.css */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(to right, #f0f2f5, #8350cf); /* soft bluish tone */
+  background-attachment: fixed;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Global button hover effect */
+button {
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #004b9a; /* Adjust to your theme */
+  transform: scale(1.03);
+  color: #fff;
+}

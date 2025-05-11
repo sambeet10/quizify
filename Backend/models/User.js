@@ -9,12 +9,12 @@ const userSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
   },
-  password: { type: String, required: true },
+  password: { type: String }, 
   role: {
     type: String,
     enum: ['quizzer', 'quizmaster'],
-    default: 'quizzer',
-  },
+    default: null,
+  },  
   points: { type: Number, default: 0 }
 }, { timestamps: true })
 

@@ -1,5 +1,6 @@
 // src/pages/Home.jsx
 import React, { useEffect, useState } from 'react';
+import './Home.css';
 import { Link } from 'react-router-dom';
 import slide1 from '../assets/bg-1.jpg';
 import slide2 from '../assets/bg-2.jpg';
@@ -30,25 +31,16 @@ const Home = () => {
         className="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center"
         style={{ backgroundColor: 'rgba(0, 0, 0, 0.1)' }}
       >
-        <h1
-          style={{
-            fontSize: '8rem',
-            fontWeight: 'bold',
-            color: '#000', 
-            fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-            textShadow: '2px 2px 6px rgba(255, 255, 255, 0.8)' 
-          }}
-        >
-          Quizify
-        </h1>
+        <h1 className="hero-title">Quizify</h1>
 
         <Link
-          to="/quizzes"
-          className="btn btn-info btn-lg mt-5 px-5"
-          style={{ fontSize: '1.2rem', fontWeight: '600', color: '#fff' }}
-        >
-          See Quizzes
+            to="/quizzes"
+            className="btn btn-info btn-lg mt-5 px-5 see-quizzes-btn"
+            style={{ fontSize: '1.2rem', fontWeight: '600', color: '#fff' }}
+          >
+            See Quizzes
         </Link>
+
       </div>
     </div>
   );

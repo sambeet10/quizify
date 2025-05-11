@@ -1,12 +1,25 @@
-const express = require('express')
-const router = express.Router()
+const express = require('express');
+const router = express.Router();
 
-const { getAllUsers, getUserById } = require('../controllers/userController')
+const {
+  getAllUsers,
+  getUserById,
+  setUserRole,
+  getCurrentUser,
+} = require('../controllers/userController');
 
-// Get all users
-router.get('/users', getAllUsers)
+const protect = require('../middlewares/authMiddleware');
+
+// Get current user - MUST come first
+router.get('/users/me', protect, getCurrentUser);
 
 // Get user by ID
-router.get('/users/:id', getUserById)
+router.get('/users/:id', protect, getUserById);
 
-module.exports = router
+// Get all users
+router.get('/users', getAllUsers);
+
+// Set user role
+router.put('/users/set-role', protect, setUserRole);
+
+module.exports = router;

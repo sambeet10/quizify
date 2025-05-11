@@ -15,6 +15,9 @@ import QuizLeaderboard from './pages/QuizLeaderboard';
 import MyAttempts from './pages/MyAttempts';
 import Search from './pages/Search';
 import Profile from './pages/Profile';
+import ChooseRole from './pages/ChooseRole';
+import GoogleSuccess from './pages/GoogleSuccess';
+import QuizAttempts from './pages/QuizAttempts';
 
 function App() {
   return (
@@ -36,6 +39,9 @@ function App() {
           <Route path="/my-attempts" element={<MyAttempts />} />
           <Route path="/search" element={<Search />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/google-success" element={<GoogleSuccess />} />
+          <Route path="/choose-role" element={<ChooseRole />} />
+          <Route path="/quiz/:id/attempts" element={<QuizAttempts />} />
 
   
           {/* More pages will come */}

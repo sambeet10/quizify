@@ -90,12 +90,15 @@ const ViewQuiz = () => {
             </button>
           )}
 
-          {user.role === 'quizmaster' && user._id === quiz.createdBy._id && (
-            <div className="mt-4 d-flex gap-2">
-              <button className="btn btn-warning" onClick={handleEdit}>Edit Quiz</button>
-              <button className="btn btn-danger" onClick={handleDelete}>Delete Quiz</button>
-            </div>
-          )}
+            {user.role === 'quizmaster' && user._id === quiz.createdBy._id && (
+              <div className="mt-4 d-flex flex-wrap gap-2">
+                <button className="btn btn-warning" onClick={handleEdit}>Edit Quiz</button>
+                <button className="btn btn-danger" onClick={handleDelete}>Delete Quiz</button>
+                <button className="btn btn-info" onClick={() => navigate(`/quiz/${id}/attempts`)}>
+                  See Attempts
+                </button>
+              </div>
+            )}
         </div>
       </div>
     </div>

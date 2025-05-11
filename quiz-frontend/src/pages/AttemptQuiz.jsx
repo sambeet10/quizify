@@ -15,6 +15,7 @@ const AttemptQuiz = () => {
   const [submitting, setSubmitting] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState({ score: 0, total: 0 });
+  const [answerDetails, setAnswerDetails] = useState([]);
 
   useEffect(() => {
     const fetchQuiz = async () => {
@@ -57,7 +58,6 @@ const AttemptQuiz = () => {
 
       const selectedAnswers = quiz.questions.map((q, index) => {
         const questionId = q._id || q.id || q.questionId;
-
         return {
           questionId: questionId,
           selectedOption: answers[index] || '',
@@ -78,6 +78,7 @@ const AttemptQuiz = () => {
         score: response.data.score,
         total: response.data.total,
       });
+      setAnswerDetails(response.data.answerDetails || []);
       setShowResult(true);
     } catch (error) {
       console.error('Error submitting quiz attempt:', error);
@@ -128,15 +129,31 @@ const AttemptQuiz = () => {
       {/* Result Modal */}
       {showResult && (
         <div className="modal show fade d-block" tabIndex="-1" style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-          <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-dialog modal-dialog-centered modal-lg">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Quiz Result</h5>
               </div>
-              <div className="modal-body text-center">
-                <p className="fs-5">
+              <div className="modal-body">
+                <p className="fs-5 text-center">
                   You scored <strong>{result.score}</strong> out of <strong>{result.total}</strong>
                 </p>
+                <hr />
+                {answerDetails.map((q, idx) => (
+                  <div key={idx} className="mb-3">
+                    <p><strong>Q{idx + 1}:</strong> {q.question}</p>
+                    <p>
+                      📝 Your Answer: <strong>{q.selectedOption}</strong>{' '}
+                      {q.isCorrect ? (
+                        <span className="text-success">(Correct)</span>
+                      ) : (
+                        <span className="text-danger">(Incorrect)</span>
+                      )}
+                    </p>
+                    <p>✅ Correct Answer: <strong>{q.correctAnswer}</strong></p>
+                    <hr />
+                  </div>
+                ))}
               </div>
               <div className="modal-footer">
                 <button

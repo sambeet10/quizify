@@ -1,0 +1,31 @@
+.hero-title {
+    font-weight: bold;
+    color: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-shadow: 2px 2px 6px rgba(255, 255, 255, 0.8);
+    font-size: 8rem;
+  }
+
+  /* Zoom effect on "See Quizzes" button */
+.see-quizzes-btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.see-quizzes-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+  
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 5rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 5rem;
+    }
+  }
+  
