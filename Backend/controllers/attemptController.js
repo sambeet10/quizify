@@ -116,13 +116,20 @@ const getLeaderboard = async (req, res) => {
   const getGlobalLeaderboard = async (req, res) => {
     try {
       const allAttempts = await Attempt.find()
-        .populate('user', 'name email');
+        .populate('user', 'name email')
+        .lean();
   
-      // Aggregate total scores per user
+      const validAttempts = allAttempts.filter(attempt => attempt.user);
+  
+      if (validAttempts.length === 0) {
+        return res.status(200).json([]);
+      }
+  
       const leaderboardMap = new Map();
   
-      allAttempts.forEach((attempt) => {
+      validAttempts.forEach((attempt) => {
         const userId = attempt.user._id.toString();
+        const score = attempt.score || 0;
   
         if (!leaderboardMap.has(userId)) {
           leaderboardMap.set(userId, {
@@ -133,19 +140,20 @@ const getLeaderboard = async (req, res) => {
         }
   
         const userStats = leaderboardMap.get(userId);
-        userStats.totalScore += attempt.score;
+        userStats.totalScore += score;
         userStats.totalQuizzes += 1;
       });
   
-      // Convert Map to array & sort by totalScore
       const globalLeaderboard = Array.from(leaderboardMap.values())
-        .sort((a, b) => b.totalScore - a.totalScore)
-        .slice(0, 10); // Top 10
+        .sort((a, b) => b.totalScore - a.totalScore);
   
-      res.status(200).json(globalLeaderboard);
+      res.status(200).json(globalLeaderboard.slice(0, 10));
+      
     } catch (error) {
-      console.error('Global leaderboard fetch error:', error);
-      res.status(500).json({ message: 'Server error while fetching global leaderboard.' });
+      res.status(500).json({ 
+        message: 'Server error while fetching leaderboard',
+        error: error.message 
+      });
     }
   };
   
